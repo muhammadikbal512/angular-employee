@@ -1,0 +1,133 @@
+<div class="tw-grow-1 tw-h-full tw-w-full tw-flex tw-flex-col tw-gap-6">
+  <div class="tw-flex tw-gap-4 tw-shrink-0 tw-grow-0">
+    <div class="tw-flex tw-flex-col tw-justify-center">
+      <span class="tw-font-semibold tw-text-[1.2rem]">Employees</span>
+      <span class="tw-text-[.9rem] tw-opacity-[.7]"
+        >Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.</span
+      >
+    </div>
+  </div>
+  <div class="tw-h-full tw-w-full tw-grow tw-overflow-auto">
+    <p-table
+      selectionMode="single"
+      [scrollable]="true"
+      [value]="data"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 25, 50, 100]"
+      [rows]="15"
+      styleClass="p-datatable-sm"
+      [(selection)]="selectedNode"
+      dataKey="id"
+    >
+      <ng-template pTemplate="caption">
+        <div class="tw-flex tw-justify-end tw-items-center">
+          <div class="tw-flex tw-gap-2 tw-items-center">
+            <p-button
+              icon="bx bx-layer-plus"
+              [raised]="true"
+              pTooltip="Add"
+              tooltipPosition="bottom"
+              (onClick)="onModify('Add')"
+            />
+            <p-button
+              icon="bx bx-edit"
+              [raised]="true"
+              pTooltip="Edit"
+              tooltipPosition="bottom"
+              [disabled]="this.selectedNode == undefined"
+              (onClick)="onModify('Edit')"
+            />
+            <p-button
+              icon="bx bx-trash-alt"
+              [disabled]="this.selectedNode == undefined"
+              [raised]="true"
+              pTooltip="Delete"
+              tooltipPosition="bottom"
+              severity="danger"
+              (onClick)="onDelete()"
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10rem" pSortableColumn="username">
+            Username
+            <p-columnFilter type="text" field="username" display="menu" />
+          </th>
+          <th style="width: 10rem" pSortableColumn="firstName">
+            First Name
+            <p-columnFilter type="text" field="firstName" display="menu" />
+          </th>
+          <th style="width: 10rem" pSortableColumn="lastName">
+            Last Name
+            <p-columnFilter type="text" field="lastName" display="menu" />
+          </th>
+          <th pSortableColumn="email">
+            Email
+            <p-columnFilter type="text" field="email" display="menu" />
+          </th>
+          <th style="width: 10rem" pSortableColumn="birthDate">
+            Birthdate
+            <p-columnFilter type="text" field="birthDate" display="menu" />
+          </th>
+          <th style="width: 10rem" pSortableColumn="basicSalary">
+            Basic Salary
+            <p-columnFilter type="text" field="basicSalary" display="menu" />
+          </th>
+          <th style="width: 10rem" pSortableColumn="status">
+            Status
+            <p-columnFilter type="text" field="status" display="menu" />
+          </th>
+          <th style="width: 10rem" pSortableColumn="group">
+            Group
+            <p-columnFilter type="text" field="group" display="menu" />
+          </th>
+          <th pSortableColumn="description">
+            Description
+            <p-columnFilter type="text" field="description" display="menu" />
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr [pSelectableRow]="product">
+          <td>{{ product.username }}</td>
+          <td>{{ product.firstName }}</td>
+          <td>{{ product.lastName }}</td>
+          <td>{{ product.email }}</td>
+          <td>{{ product.birthDate }}</td>
+          <td>
+            {{ product.basicSalary | currency : "IDR" : "symbol" : "1.0-0" }}
+          </td>
+          <td>
+            @if (product.status) {
+              <p-tag severity="success" value="Active"/>
+            } @else {
+              <p-tag severity="warning" value="Not Active"/>
+            }
+          </td>
+          <td>{{ product.group }}</td>
+          <td
+          [pTooltip]="product.description"
+          tooltipPosition="top"
+          >{{ product.description | slice : 0 : 50 }}</td>
+          <td>
+            <div class="tw-flex tw-w-full tw-justify-center">
+              <p-button
+                label="Detail"
+                [raised]="true"
+                size="small"
+                severity="secondary"
+                [text]="true"
+                (onClick)="onDetailClicked(product)"
+              ></p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

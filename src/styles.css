@@ -1,1 +1,256 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "primeng/resources/themes/viva-light/theme.css"; */
+@import "primeng/resources/themes/lara-light-indigo/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'primeflex/primeflex.css';
+@import 'boxicons/css/boxicons.css';
+
+:root {
+    --prefix: 'p-';
+  }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format("truetype"),
+  url('assets/fonts/Poppins/Poppins-Bold.ttf') format("truetype"),
+  url('assets/fonts/Poppins/Poppins-SemiBold.ttf') format("truetype"),
+  url('assets/fonts/Poppins/Poppins-Medium.ttf') format("truetype"),
+  url('assets/fonts/Poppins/Poppins-ExtraBold.ttf') format("truetype")
+}
+
+* {
+  font-family: "Poppins", serif;
+}
+
+html {
+  font-size: .8rem;
+  /*font-family: MatterVF,-apple-system,BlinkMacSystemFont,avenir next,avenir,segoe ui,helvetica neue,helvetica,Ubuntu,roboto,noto,arial,"sans-serif"!important*/
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #939393;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.p-sidebar {
+  box-shadow: unset !important;
+  border-right: solid 1px rgba(0, 0, 0, .12)
+}
+
+.p-breadcrumb {
+  border: unset !important;
+}
+
+.p-treetable.p-component,
+.p-datatable.p-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  height: 100%;
+}
+
+.p-treetable-scrollable-wrapper,
+.p-datatable-wrapper {
+  border: 2px solid #ebebeb;
+  border-radius: 6px;
+
+  @apply tw-grow tw-overflow-auto
+}
+
+.p-treetable-scrollable-view {
+  @apply tw-h-full tw-flex tw-flex-col tw-overflow-auto
+}
+
+.p-treetable .p-treetable-header,
+.p-datatable-header {
+  border: 2px solid #ebebeb;
+  border-radius: 6px
+}
+
+.p-treetable-scrollable-header,
+.p-datatable-thead {
+  @apply tw-grow-0 tw-shrink-0
+}
+
+.p-treetable-scrollable-body,
+.p-datatable-tbody {
+  @apply tw-grow
+}
+
+.p-datatable .p-paginator {
+  border: unset;
+}
+
+.p-datatable .p-datatable-thead > tr > th,
+.p-treetable-scrollable-header-table .p-treetable-thead > tr > th {
+  background-color: #f9fafb !important;
+  @apply tw-p-3
+}
+
+.p-treetable.p-treetable-sm .p-treetable-tbody > tr > td {
+  word-break: break-all;
+  white-space: normal;
+}
+
+.p-paginator.p-component {
+  @apply tw-grow-0 tw-shrink-0
+}
+
+.p-dialog {
+  max-height: 95%;
+}
+
+/* //.p-button {
+//  height: 100%
+//} */
+
+.p-button-icon {
+  font-size: 1.2rem
+}
+
+.p-button.p-button-icon-only {
+  width: 2.8rem;
+  padding: 0.5rem 0;
+}
+
+.p-button.p-button-sm {
+  padding: 0.5rem 1.09375rem;
+}
+
+.p-password,
+.p-password-input,
+.p-dropdown {
+  @apply tw-w-full
+}
+
+.p-inputtext {
+  font-size: 0.875rem;
+  padding: 0.6rem 0.6rem;
+}
+
+.p-progress-spinner {
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.p-datepicker table td {
+  padding: 0.2rem;
+}
+
+
+.p-datepicker table th {
+  padding: 0.2rem;
+}
+
+.p-datepicker-buttonbar .p-button {
+  padding: 0.2rem 1rem;
+  font-size: .9rem;
+}
+
+.p-datepicker .p-datepicker-buttonbar {
+  padding: 0.9rem 0;
+}
+
+.p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-action {
+  padding: 1rem
+}
+
+.p-menuitem-text {
+  font-size: .9rem
+}
+
+.p-picklist-source-controls,
+.p-picklist-target-controls {
+  display: none;
+}
+
+.p-picklist-header {
+  padding: .6rem;
+  font-size: .9rem;
+  text-align: center;
+}
+
+.p-picklist-filter-container {
+  padding: .8rem;
+  border: unset;
+}
+
+.p-picklist-list {
+  padding: .5rem
+}
+
+.p-picklist-item {
+  border-radius: 6px;
+}
+
+.p-tree {
+  padding: .4rem
+}
+
+.p-treeselect {
+  width: 100%
+}
+
+.p-treeselect .p-treeselect-label {
+  padding: .5rem;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+
+.p-overlaypanel .p-overlaypanel-content {
+  @apply tw-list-none tw-p-0
+}
+
+.p-message {
+  margin: 0
+}
+
+.p-message-wrapper {
+  padding: .8rem 1rem
+}
+
+.p-message-icon {
+  display: flex;
+}
+
+.yellow-background {
+  background-color: rgba(255, 255, 0, 0.314);
+}
+
+.wrap-text {
+  overflow-wrap: break-word;
+  max-width: 300px;
+  overflow: hidden;
+}

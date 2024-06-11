@@ -1,0 +1,118 @@
+<div class="employee-container">
+  <p-card class="first-card">
+    <div class="card-container" [formGroup]="form">
+      <div class="first-container">
+        <span class="header-title">Add Employee</span>
+        <div class="form-container">
+          <div class="common-text-field-container">
+            <span class="label-txt-field-sm">Username</span>
+            <input pInputText class="input-sm" formControlName="username" />
+          </div>
+          <div class="first-form">
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Firstname</span>
+              <input pInputText class="input-sm" formControlName="firstName" />
+            </div>
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Lastname</span>
+              <input pInputText class="input-sm" formControlName="lastName" />
+            </div>
+          </div>
+          <div class="first-form">
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Email</span>
+              <input class="input-sm" formControlName="email" pInputText />
+            </div>
+
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Date of Birth</span>
+              <p-calendar
+                appendTo="body"
+                class="calender-field-pick-sm"
+                formControlName="birthDate"
+                [maxDate]="maxSelectableDate"
+                dateFormat="dd-mm-yy"
+              ></p-calendar>
+            </div>
+          </div>
+
+          <div class="first-form">
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Basic Salary</span>
+              <input
+                class="input-sm"
+                formControlName="basicSalary"
+                type="number"
+                pInputText
+              />
+              <div *ngIf="form.get('basicSalary')?.value" class="rupiah-format">
+                {{
+                  form.get("basicSalary")?.value
+                    | currency : "IDR" : "symbol" : "1.0-0"
+                }}
+              </div>
+            </div>
+
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Status</span>
+              <p-dropdown
+                class="field-dropdown-sm"
+                [options]="status"
+                [placeholder]="'Select Status'"
+                formControlName="status"
+                optionLabel="name"
+              ></p-dropdown>
+              <div *ngIf="form.get('basicSalary')?.value" class="rupiah-format">
+                <span style="opacity: 0;">
+                {{
+                  form.get("basicSalary")?.value
+                    | currency : "IDR" : "symbol" : "1.0-0"
+                }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="first-form">
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Group</span>
+              <p-dropdown
+                class="field-dropdown-sm"
+                [options]="group"
+                [placeholder]="'Select Group'"
+                formControlName="group"
+                optionLabel="name"
+              ></p-dropdown>
+            </div>
+
+            <div class="common-text-field-container">
+              <span class="label-txt-field-sm">Description</span>
+              <textarea
+                rows="1"
+                cols="20"
+                [autoResize]="true"
+                class="input-sm"
+                pInputTextarea
+                formControlName="description"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-button-container">
+        <p-button
+          label="Cancel"
+          severity="danger"
+          [raised]="true"
+          (click)="onCancel()"
+        />
+        <p-button
+          label="Save"
+          [raised]="true"
+          [disabled]="!form.valid"
+          (click)="onSave(form.getRawValue())"
+        />
+      </div>
+    </div>
+  </p-card>
+</div>

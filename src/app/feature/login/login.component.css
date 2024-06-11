@@ -53,11 +53,3 @@
   @apply tw-w-full
     tw-flex tw-justify-center;
 }
-
-.login-button {
-  @apply tw-w-full;
-}
-
-.login-button > span {
-  @apply tw-flex tw-items-center;
-}

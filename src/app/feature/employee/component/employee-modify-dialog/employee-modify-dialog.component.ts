@@ -70,9 +70,7 @@ export class EmployeeModifyDialogComponent {
   private confirmationService = inject(ConfirmationService);
   private messageService = inject(MessageService);
   private employeeDispatcher = inject(EmployeeDispatcher);
-  private actions$ = inject(Actions);
   private route = inject(ActivatedRoute);
-  private action$ = inject(Actions);
   private datePipe = inject(DatePipe);
 
   ngOnInit(): void {
@@ -120,21 +118,25 @@ export class EmployeeModifyDialogComponent {
   fetchEmployeeData(id: string) {
     this.employee$.subscribe((data) => {
       const value = data.find((e) => e.id === this.employeeId);
-      this.employee = value!;
+      if (value) {
+        this.employee = value;
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `Employee with ID ${this.employeeId} not found.`,
+        });
+      }
     });
   }
 
   onSave(data: any) {
-    if (this.employeeId) {
-      data.id = this.employeeId;
-    } else {
-      data.id = String(Math.floor(Math.random() * 1000));
-    }
+    data.id = this.employeeId || String(Math.floor(Math.random() * 1000));
     data.status = data.status.code;
     data.group = data.group.name;
     data.birthDate = this.datePipe.transform(
       data.birthDate,
-      'dd-MM-yy'
+      'dd-MM-yyyy'
     ) as string;
 
     this.confirmationService.confirm({

@@ -44,7 +44,7 @@ export class EmployeeState {
     const state = ctx.getState();
     ctx.setState({
       ...state,
-      data: [...state.data, payload],
+      data: [payload, ...state.data],
     });
   }
 
@@ -59,7 +59,6 @@ updateData(
 
   console.log(payload.id)
   if (index !== -1) {
-    // Update the item immutably by creating a new array
     const newData = [...updatedData];
     newData[index] = payload;
 
@@ -67,8 +66,6 @@ updateData(
       ...state,
       data: newData,
     });
-  } else {
-    console.error(`Item with id ${payload.id} not found for update.`);
   }
 }
 

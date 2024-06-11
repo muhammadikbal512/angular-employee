@@ -7,7 +7,7 @@ import { EmployeeInterface } from './interface/employee';
 import { InputTextModule } from 'primeng/inputtext';
 import { EmployeeDispatcher } from '../../config/state/employee/employee.dispatcher';
 import { Observable } from 'rxjs';
-import { Actions, ofActionSuccessful, Select, Store } from '@ngxs/store';
+import { Actions, Select, Store } from '@ngxs/store';
 import { EmployeeState } from '../../config/state/employee/employee.state';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -53,8 +53,6 @@ export class EmployeeComponent {
       }
     });
   }
-
-  showFilter() {}
 
   onModify(state: string) {
     if (state === 'Add') {

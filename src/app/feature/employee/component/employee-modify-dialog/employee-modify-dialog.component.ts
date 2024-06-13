@@ -46,6 +46,7 @@ export class EmployeeModifyDialogComponent {
   maxSelectableDate!: Date;
   employeeId: string | null = null;
   employee!: EmployeeInterface;
+  dialogTitle: string = 'Add';
 
   group = [
     { code: 1, name: 'A' },
@@ -91,6 +92,7 @@ export class EmployeeModifyDialogComponent {
       this.employeeId = params['id'] ? params['id'] : null;
       if (this.employeeId) {
         this.fetchEmployeeData(this.employeeId);
+        this.dialogTitle = 'Detail'
       }
     });
 
@@ -120,12 +122,6 @@ export class EmployeeModifyDialogComponent {
       const value = data.find((e) => e.id === this.employeeId);
       if (value) {
         this.employee = value;
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: `Employee with ID ${this.employeeId} not found.`,
-        });
       }
     });
   }
@@ -134,10 +130,13 @@ export class EmployeeModifyDialogComponent {
     data.id = this.employeeId || String(Math.floor(Math.random() * 1000));
     data.status = data.status.code;
     data.group = data.group.name;
-    data.birthDate = this.datePipe.transform(
-      data.birthDate,
-      'dd-MM-yyyy'
-    ) as string;
+    const birthDateRegex = /^\d{2}-\d{2}-\d{4}$/;
+    if (!birthDateRegex.test(data.birthDate)) {
+      data.birthDate = this.datePipe.transform(
+        data.birthDate,
+        'dd-MM-yyyy'
+      ) as string;
+    }
 
     this.confirmationService.confirm({
       header: 'Confirmation',
